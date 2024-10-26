@@ -12,3 +12,11 @@ dependencies = [
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = [
+    "taskipy>=1.14.0",
+]
+
+[tool.taskipy.tasks]
+dev = "flask run --debug"

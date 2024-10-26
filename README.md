@@ -3,5 +3,5 @@
 ## How to run
 
 ```bash
-$ uv run flask run
+$ uv run task dev
 ```

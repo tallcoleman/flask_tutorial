@@ -1,7 +1,8 @@
 import sqlalchemy as sa
 import sqlalchemy.orm as so
+
 from flask_tutorial import app, db
-from flask_tutorial.models import User, Post
+from flask_tutorial.models import Post, User
 
 
 @app.shell_context_processor

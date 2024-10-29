@@ -1,10 +1,12 @@
 from datetime import datetime, timezone
 from hashlib import md5
 from typing import Optional
+
 import sqlalchemy as sa
 import sqlalchemy.orm as so
-from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from werkzeug.security import check_password_hash, generate_password_hash
+
 from flask_tutorial import db, login
 
 

@@ -26,11 +26,13 @@ dev-dependencies = [
 ]
 
 [tool.taskipy.tasks]
+pre_dev = "python manage_dev.py"
 dev = "flask run --debug"
 shell = "flask shell"
 format = "task ruff_format && task ruff_sort_imports"
 ruff_format = "ruff format"
 ruff_sort_imports = "ruff check --select I --fix"
+test = "python tests.py"
 
 [tool.ruff]
 exclude = ["migrations"]

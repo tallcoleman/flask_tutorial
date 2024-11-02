@@ -161,3 +161,6 @@ cython_debug/
 
 # SQLite server for local development
 app.db
+
+# logs
+logs/

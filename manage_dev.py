@@ -43,12 +43,12 @@ def add_data():
     # set up the posts
     now = datetime.now(timezone.utc)
     p1 = Post(
-        body="post from john",
+        body="post from susan",
         author=u1,
         timestamp=now + timedelta(seconds=1),
     )
     p2 = Post(
-        body="post from susan",
+        body="post from john",
         author=u2,
         timestamp=now + timedelta(seconds=4),
     )

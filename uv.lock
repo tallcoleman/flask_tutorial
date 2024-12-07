@@ -128,6 +128,19 @@ wheels = [
 ]
 
 [[package]]
+name = "flask-mail"
+version = "0.10.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "blinker" },
+    { name = "flask" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ba/29/e92dc84c675d1e8d260d5768eb3fb65c70cbd33addecf424187587bee862/flask_mail-0.10.0.tar.gz", hash = "sha256:44083e7b02bbcce792209c06252f8569dd5a325a7aaa76afe7330422bd97881d", size = 8152 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e4/c0/a81083da779f482494d49195d8b6c9fde21072558253e4a9fb2ec969c3c1/flask_mail-0.10.0-py3-none-any.whl", hash = "sha256:a451e490931bb3441d9b11ebab6812a16bfa81855792ae1bf9c1e1e22c4e51e7", size = 8529 },
+]
+
+[[package]]
 name = "flask-migrate"
 version = "4.0.7"
 source = { registry = "https://pypi.org/simple" }
@@ -162,9 +175,11 @@ dependencies = [
     { name = "email-validator" },
     { name = "flask" },
     { name = "flask-login" },
+    { name = "flask-mail" },
     { name = "flask-migrate" },
     { name = "flask-sqlalchemy" },
     { name = "flask-wtf" },
+    { name = "pyjwt" },
     { name = "python-dotenv" },
 ]
 
@@ -180,9 +195,11 @@ requires-dist = [
     { name = "email-validator", specifier = ">=2.2.0" },
     { name = "flask", specifier = ">=3.0.3" },
     { name = "flask-login", specifier = ">=0.6.3" },
+    { name = "flask-mail", specifier = ">=0.10.0" },
     { name = "flask-migrate", specifier = ">=4.0.7" },
     { name = "flask-sqlalchemy", specifier = ">=3.1.1" },
     { name = "flask-wtf", specifier = ">=1.2.2" },
+    { name = "pyjwt", specifier = ">=2.10.1" },
     { name = "python-dotenv", specifier = ">=1.0.1" },
 ]
 
@@ -335,14 +352,21 @@ version = "5.9.8"
 source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/90/c7/6dc0a455d111f68ee43f27793971cf03fe29b6ef972042549db29eec39a2/psutil-5.9.8.tar.gz", hash = "sha256:6be126e3225486dff286a8fb9a06246a5253f4c7c53b475ea5f5ac934e64194c", size = 503247 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/fe/5f/c26deb822fd3daf8fde4bdb658bf87d9ab1ffd3fca483816e89a9a9a9084/psutil-5.9.8-cp27-none-win32.whl", hash = "sha256:36f435891adb138ed3c9e58c6af3e2e6ca9ac2f365efe1f9cfef2794e6c93b4e", size = 248660 },
-    { url = "https://files.pythonhosted.org/packages/32/1d/cf66073d74d6146187e2d0081a7616df4437214afa294ee4f16f80a2f96a/psutil-5.9.8-cp27-none-win_amd64.whl", hash = "sha256:bd1184ceb3f87651a67b2708d4c3338e9b10c5df903f2e3776b62303b26cb631", size = 251966 },
     { url = "https://files.pythonhosted.org/packages/e7/e3/07ae864a636d70a8a6f58da27cb1179192f1140d5d1da10886ade9405797/psutil-5.9.8-cp36-abi3-macosx_10_9_x86_64.whl", hash = "sha256:aee678c8720623dc456fa20659af736241f575d79429a0e5e9cf88ae0605cc81", size = 248702 },
     { url = "https://files.pythonhosted.org/packages/b3/bd/28c5f553667116b2598b9cc55908ec435cb7f77a34f2bff3e3ca765b0f78/psutil-5.9.8-cp36-abi3-manylinux_2_12_i686.manylinux2010_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:8cb6403ce6d8e047495a701dc7c5bd788add903f8986d523e3e20b98b733e421", size = 285242 },
     { url = "https://files.pythonhosted.org/packages/c5/4f/0e22aaa246f96d6ac87fe5ebb9c5a693fbe8877f537a1022527c47ca43c5/psutil-5.9.8-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:d06016f7f8625a1825ba3732081d77c94589dca78b7a3fc072194851e88461a4", size = 288191 },
     { url = "https://files.pythonhosted.org/packages/6e/f5/2aa3a4acdc1e5940b59d421742356f133185667dd190b166dbcfcf5d7b43/psutil-5.9.8-cp37-abi3-win32.whl", hash = "sha256:bc56c2a1b0d15aa3eaa5a60c9f3f8e3e565303b465dbf57a1b730e7a2b9844e0", size = 251252 },
     { url = "https://files.pythonhosted.org/packages/93/52/3e39d26feae7df0aa0fd510b14012c3678b36ed068f7d78b8d8784d61f0e/psutil-5.9.8-cp37-abi3-win_amd64.whl", hash = "sha256:8db4c1b57507eef143a15a6884ca10f7c73876cdf5d51e713151c1236a0e68cf", size = 255090 },
     { url = "https://files.pythonhosted.org/packages/05/33/2d74d588408caedd065c2497bdb5ef83ce6082db01289a1e1147f6639802/psutil-5.9.8-cp38-abi3-macosx_11_0_arm64.whl", hash = "sha256:d16bbddf0693323b8c6123dd804100241da461e41d6e332fb0ba6058f630f8c8", size = 249898 },
+]
+
+[[package]]
+name = "pyjwt"
+version = "2.10.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/e7/46/bd74733ff231675599650d3e47f361794b22ef3e3770998dda30d3b63726/pyjwt-2.10.1.tar.gz", hash = "sha256:3cc5772eb20009233caf06e9d8a0577824723b44e6648ee0a2aedb6cf9381953", size = 87785 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/61/ad/689f02752eeec26aed679477e80e632ef1b682313be70793d798c1d5fc8f/PyJWT-2.10.1-py3-none-any.whl", hash = "sha256:dcdd193e30abefd5debf142f9adfcdd2b58004e644f25406ffaebd50bd98dacb", size = 22997 },
 ]
 
 [[package]]

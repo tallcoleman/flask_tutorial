@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
-from time import time
 from hashlib import md5
+from time import time
 from typing import Optional
 
 import jwt
@@ -9,8 +9,7 @@ import sqlalchemy.orm as so
 from flask_login import UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from flask_tutorial import db, login, app
-
+from flask_tutorial import app, db, login
 
 followers = sa.Table(
     "followers",

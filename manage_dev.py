@@ -2,7 +2,7 @@ import os
 from datetime import datetime, timedelta, timezone
 
 from flask_tutorial import app, db
-from flask_tutorial.models import User, Post
+from flask_tutorial.models import Post, User
 
 os.environ["DATABASE_URL"] = "sqlite://"
 

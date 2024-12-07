@@ -6,17 +6,17 @@ from flask import flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 
 from flask_tutorial import app, db
+from flask_tutorial.email import send_password_reset_email
 from flask_tutorial.forms import (
     EditProfileForm,
-    LoginForm,
-    RegistrationForm,
     EmptyForm,
+    LoginForm,
     PostForm,
-    ResetPasswordRequestForm,
+    RegistrationForm,
     ResetPasswordForm,
+    ResetPasswordRequestForm,
 )
-from flask_tutorial.models import User, Post
-from flask_tutorial.email import send_password_reset_email
+from flask_tutorial.models import Post, User
 
 
 @app.before_request

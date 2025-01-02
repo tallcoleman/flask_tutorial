@@ -30,20 +30,45 @@ dev-dependencies = [
 ]
 
 [tool.taskipy.tasks]
+# development tasks
 pre_dev = "python manage_dev.py"
 dev = "flask run --debug"
-build = "docker build -t microblog:latest ."
-docker_network = "docker network create microblog-network || true"
-docker_postgres = "docker run --name microblog-postgres -e POSTGRES_PASSWORD=devpassword -e POSTGRES_DB=microblog -d --rm --network microblog-network postgres"
-pre_docker_run = "task build && task docker_network && task docker_postgres"
-docker_run = "docker run --name microblog -d -p 8080:8080 --rm --network microblog-network -e DATABASE_URL=postgresql://postgres:devpassword@microblog-postgres/microblog microblog:latest"
-docker_stop = "docker stop microblog || true && docker stop microblog-postgres || true"
 shell = "flask shell"
+generate_key = "python -c 'import uuid; print(uuid.uuid4().hex)'"
 format = "task ruff_format && task ruff_sort_imports"
 ruff_format = "ruff format"
 ruff_sort_imports = "ruff check --select I --fix"
 test = "python tests.py"
-generate_key = "python -c 'import uuid; print(uuid.uuid4().hex)'"
+
+# run locally with docker_run and docker_stop
+build = "docker build --tag microblog:latest ."
+docker_network = "docker network create microblog-network || true"
+docker_postgres = """
+docker run --name microblog-postgres \
+--detach --rm \
+--env POSTGRES_PASSWORD=devpassword \
+--env POSTGRES_DB=microblog \
+--network microblog-network \
+postgres"""
+pre_docker_run = "task build && task docker_network && task docker_postgres"
+docker_run = """
+docker run --name microblog \
+--detach --rm \
+-p 8080:8080 \
+--env DATABASE_URL=postgresql://postgres:devpassword@microblog-postgres/microblog \
+--network microblog-network \
+microblog:latest"""
+docker_stop = """
+docker stop microblog || true && \
+docker stop microblog-postgres || true"""
+
+docker_linux = """
+docker run --name microblog-linux \
+--detach \
+-p 8080:8080 \
+--env DATABASE_URL=postgresql://postgres:devpassword@microblog-postgres/microblog \
+--network microblog-network \
+nginx"""
 
 [tool.ruff]
 exclude = ["migrations"]

@@ -3,7 +3,12 @@
 ## How to run
 
 ```bash
+# local development
 $ uv run task dev
+
+# test build
+$ uv run task docker_run
+$ uv run task docker_stop
 ```
 
 ### Migrations

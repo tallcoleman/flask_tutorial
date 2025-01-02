@@ -41,34 +41,10 @@ ruff_sort_imports = "ruff check --select I --fix"
 test = "python tests.py"
 
 # run locally with docker_run and docker_stop
-build = "docker build --tag microblog:latest ."
-docker_network = "docker network create microblog-network || true"
-docker_postgres = """
-docker run --name microblog-postgres \
---detach --rm \
---env POSTGRES_PASSWORD=devpassword \
---env POSTGRES_DB=microblog \
---network microblog-network \
-postgres"""
-pre_docker_run = "task build && task docker_network && task docker_postgres"
-docker_run = """
-docker run --name microblog \
---detach --rm \
--p 8080:8080 \
---env DATABASE_URL=postgresql://postgres:devpassword@microblog-postgres/microblog \
---network microblog-network \
-microblog:latest"""
-docker_stop = """
-docker stop microblog || true && \
-docker stop microblog-postgres || true"""
-
-docker_linux = """
-docker run --name microblog-linux \
---detach \
--p 8080:8080 \
---env DATABASE_URL=postgresql://postgres:devpassword@microblog-postgres/microblog \
---network microblog-network \
-nginx"""
+docker_run = "docker compose -f compose-prodtest.yaml up"
+docker_down = "docker compose -f compose-prodtest.yaml down"
+docker_run_dev = "docker compose -f compose-dev.yaml up --watch"
+docker_down_dev = "docker compose -f compose-dev.yaml down"
 
 [tool.ruff]
 exclude = ["migrations"]

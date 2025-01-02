@@ -1,0 +1,21 @@
+name: flask_tutorial_dev
+
+services:
+  microblog:
+    build: 
+      context: .
+      dockerfile: docker/dev/Dockerfile
+    ports: 
+      - "8080:5000"
+    environment:
+      DATABASE_URL: "postgresql://postgres:devpassword@microblog-postgres/microblog"
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app
+  microblog-postgres:
+    image: "postgres"
+    environment:
+      POSTGRES_PASSWORD: "devpassword"
+      POSTGRES_DB: "microblog"

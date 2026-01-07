@@ -165,3 +165,4 @@ app.db
 # logs
 logs/
 .DS_Store
+env
